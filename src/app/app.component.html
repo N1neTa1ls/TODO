@@ -6,11 +6,12 @@
 </div>
 
 
-Test
+<div>Test</div>
 <!-- <span *ngFor="let createdTask of task">
   {{createdTask}}
 </span> -->
-
+<button (click)="clearFunc()"
+>Очистить список</button>
 <ol>
 <li
   *ngFor="let createdTask of tasks; let i = index"
