@@ -14,12 +14,15 @@
 >Очистить список</button>
 <ol>
 <li
-  *ngFor="let createdTask of tasks; let i = index"
+  *ngFor="let createdTask of tasks; let i = index; trackBy: trackByFn"
   [class.close]="createdTask.checked"
 >
   <input
     type="checkbox"
     [checked]="createdTask.checked"
     (click)="changeParams(i)"
-  >{{createdTask.title}}</li>
+  >
+  {{createdTask.title}}
+  <button (click)="delTask(i)">X</button>
+</li>
 </ol>

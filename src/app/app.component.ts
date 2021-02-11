@@ -20,13 +20,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+  saveLocalStorage() {
+    localStorage.setItem('itms', JSON.stringify(this.tasks));
+  }
+
   changedArray(item: string) {
     const task: ITask = {
       title: item,
       checked: false
     };
     this.tasks.push(task);
-    localStorage.setItem('itms', JSON.stringify(this.tasks));
+      this.saveLocalStorage();
     console.log(this.tasks);
   }
 
@@ -37,6 +41,16 @@ export class AppComponent implements OnInit {
 
   changeParams(index) {
     this.tasks[index].checked = !this.tasks[index].checked;
+    this.saveLocalStorage();
+  }
+
+  delTask(index) {
+    this.tasks.splice(index, 1);
+    this.saveLocalStorage();
+  }
+
+  trackByFn(index) {
+    return index;
   }
 
 }

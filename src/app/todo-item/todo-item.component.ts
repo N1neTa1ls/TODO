@@ -17,8 +17,10 @@ export class TodoItemComponent implements OnInit {
   }
 
   emitData() {
-    this.clicked.emit(this.task);
-    this.task = '';
+    if (this.task) {
+      this.clicked.emit(this.task);
+      this.task = '';
+    }
   }
 
 }
