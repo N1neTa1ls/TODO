@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Редактирование задачи</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Поле не должно оставаться пустым" [(ngModel)]="data.title">
+  </mat-form-field>
+</div>
+<button mat-raised-button (click)="AcceptFunc()">Принять</button>
+<button mat-raised-button (click)="DeclineFunc()">Отмена</button>

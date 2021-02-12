@@ -12,17 +12,19 @@
 </span> -->
 <button (click)="clearFunc()"
 >Очистить список</button>
-<ol>
+<ol
+cdkDropList (cdkDropListDropped)="drop($event)">
 <li
   *ngFor="let createdTask of tasks; let i = index; trackBy: trackByFn"
   [class.close]="createdTask.checked"
->
+  cdkDrag>
+<button (click)="delTask(i)">X</button>
+<button mat-button (click)="openDialog(createdTask, i)">Ред.</button>
   <input
     type="checkbox"
     [checked]="createdTask.checked"
     (click)="changeParams(i)"
   >
   {{createdTask.title}}
-  <button (click)="delTask(i)">X</button>
 </li>
 </ol>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TodoItemEditComponent } from './todo-item-edit/todo-item-edit.component';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
-interface ITask {
+export interface ITask {
   title: string;
   checked: boolean;
 };
@@ -13,6 +16,8 @@ interface ITask {
 export class AppComponent implements OnInit {
   title = 'TODO';
   tasks: Array<ITask> = [];
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('itms')){
@@ -47,6 +52,29 @@ export class AppComponent implements OnInit {
   delTask(index) {
     this.tasks.splice(index, 1);
     this.saveLocalStorage();
+  }
+
+  openDialog(item, index) {
+    const data = {
+
+    };
+    
+    const dialogRef = this.dialog.open(TodoItemEditComponent, {
+      width: '450px',
+      // minHeight: '400px',
+      data: {...item}
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.tasks[index].title = data.title;
+        this.saveLocalStorage();
+      }
+    });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
   }
 
   trackByFn(index) {
