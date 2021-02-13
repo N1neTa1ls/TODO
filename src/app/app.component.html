@@ -7,10 +7,7 @@
 
 
 <div>Test</div>
-<!-- <span *ngFor="let createdTask of task">
-  {{createdTask}}
-</span> -->
-<button (click)="clearFunc()"
+<button mat-raised-button (click)="clearFunc()"
 >Очистить список</button>
 <ol
 cdkDropList (cdkDropListDropped)="drop($event)">
@@ -18,13 +15,13 @@ cdkDropList (cdkDropListDropped)="drop($event)">
   *ngFor="let createdTask of tasks; let i = index; trackBy: trackByFn"
   [class.close]="createdTask.checked"
   cdkDrag>
-<button (click)="delTask(i)">X</button>
-<button mat-button (click)="openDialog(createdTask, i)">Ред.</button>
-  <input
-    type="checkbox"
-    [checked]="createdTask.checked"
-    (click)="changeParams(i)"
-  >
-  {{createdTask.title}}
+  <button mat-raised-button (click)="delTask(i)">X</button>
+  <button mat-raised-button (click)="openDialog(createdTask, i)">Ред.</button>  
+    <input
+      type="checkbox"
+      [checked]="createdTask.checked"
+      (click)="changeParams(i)"
+    >
+    {{createdTask.title}}
 </li>
 </ol>

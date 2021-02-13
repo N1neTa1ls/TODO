@@ -5,7 +5,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 export interface ITask {
   title: string;
-  checked: boolean;
+  checked: boolean | 'fake';
 };
 
 @Component({
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       checked: false
     };
     this.tasks.push(task);
-      this.saveLocalStorage();
+    this.saveLocalStorage();
     console.log(this.tasks);
   }
 
@@ -55,13 +55,8 @@ export class AppComponent implements OnInit {
   }
 
   openDialog(item, index) {
-    const data = {
-
-    };
-    
     const dialogRef = this.dialog.open(TodoItemEditComponent, {
       width: '450px',
-      // minHeight: '400px',
       data: {...item}
     });
 

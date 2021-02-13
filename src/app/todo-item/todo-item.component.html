@@ -1,3 +1,5 @@
 <p>todo-item works!</p>
-<input type="text" [(ngModel)]="task" placeholder="Новая задача" (keyup.enter)="emitData()">
-<button (click)="emitData()">Создать</button>
+<mat-form-field>
+  <input matInput type="text" [(ngModel)]="task" placeholder="Новая задача" (keyup.enter)="emitData()">
+</mat-form-field>
+<button mat-raised-button class="button" (click)="emitData()">Создать</button>
